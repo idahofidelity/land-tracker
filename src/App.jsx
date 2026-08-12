@@ -8,7 +8,7 @@ import ListingForm from './components/ListingForm'
 
 export default function App() {
   const [listings, setListings] = useLocalStorage('land-tracker-listings', SEED_LISTINGS)
-  const [filters, setFilters] = useState({ search: '', status: '', area: '' })
+  const [filters, setFilters] = useState({ search: '', status: '', area: '', planType: '' })
   const [sortBy, setSortBy] = useState('price_asc')
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState(null)
@@ -55,6 +55,7 @@ export default function App() {
     }
     if (filters.status) result = result.filter(l => l.status === filters.status)
     if (filters.area) result = result.filter(l => l.area === filters.area)
+    if (filters.planType) result = result.filter(l => (l.planType || 'primary') === filters.planType)
 
     result.sort((a, b) => {
       if (sortBy === 'price_asc') return (a.price || Infinity) - (b.price || Infinity)
@@ -76,7 +77,7 @@ export default function App() {
           Land Tracker
         </div>
         <div style={{ color: 'var(--muted)', fontSize: '0.78rem', letterSpacing: '1.2px', textTransform: 'uppercase', marginTop: '4px' }} className="mono">
-          Kootenai County, ID · VA/FHA Buildable Parcels
+          North Idaho · VA/FHA Buildable Parcels · Primary + MIL Compound Search
         </div>
       </header>
 

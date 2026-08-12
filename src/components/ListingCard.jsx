@@ -39,7 +39,12 @@ export default function ListingCard({ listing, onEdit, onDelete, onStatusChange 
         }}
       >
         <div style={{ minWidth: 0 }}>
-          <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {listing.planType === 'mil_compound' && (
+              <span style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', background: 'rgba(200,168,75,0.2)', color: 'var(--accent)', padding: '1px 6px', borderRadius: '3px', flexShrink: 0 }}>
+                MIL Compound
+              </span>
+            )}
             {listing.address}
           </div>
           <div className="mono" style={{ fontSize: '0.7rem', color: 'var(--muted)', marginTop: '2px' }}>

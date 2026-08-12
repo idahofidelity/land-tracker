@@ -1,5 +1,5 @@
 import React from 'react'
-import { STATUS_OPTIONS, AREA_OPTIONS } from '../data/seed'
+import { STATUS_OPTIONS, AREA_OPTIONS, PLAN_TYPE_OPTIONS } from '../data/seed'
 
 export default function Toolbar({ filters, setFilters, sortBy, setSortBy, onAddNew }) {
   const update = (key, val) => setFilters(prev => ({ ...prev, [key]: val }))
@@ -16,6 +16,11 @@ export default function Toolbar({ filters, setFilters, sortBy, setSortBy, onAddN
         onChange={e => update('search', e.target.value)}
         style={{ flex: '1 1 220px', minWidth: '180px' }}
       />
+
+      <select value={filters.planType || ''} onChange={e => update('planType', e.target.value)} style={{ width: 'auto', flex: '0 0 auto' }}>
+        <option value="">All Plans</option>
+        {PLAN_TYPE_OPTIONS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
+      </select>
 
       <select value={filters.status} onChange={e => update('status', e.target.value)} style={{ width: 'auto', flex: '0 0 auto' }}>
         <option value="">All Statuses</option>
